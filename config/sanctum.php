@@ -19,7 +19,8 @@ return [
 //    )),
 
     'stateful' => [
-        'localhost:3000'
+        'localhost:3000',
+        'fitness-app-szakdoga.herokuapp.com'
     ],
 
 
