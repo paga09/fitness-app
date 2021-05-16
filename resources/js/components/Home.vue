@@ -5,7 +5,7 @@
         </div>
         <div class="d-flex flex-column flex-sm-row mb-3 mb-md-5">
             <div class="col-sm-6 in-left mb-2">
-                <img :src="'../images/nutrition.jpg'" alt="nutrition" class="img-fluid" @load="onImgLoad">
+                <img :src="'../images/nutrition.jpg'" alt="nutrition" class="img-fluid">
             </div>
             <div class="col-sm-6 in-right m-auto">
                 <h3>Track your nutrition</h3>
@@ -18,7 +18,7 @@
         </div>
 
         <div class="d-none d-sm-flex justify-content-center mb-3 mb-md-5 in-down"
-             v-if="!$store.state.authorized && imgLoaded">
+             v-if="!$store.state.authorized">
             <button type="button" class="btn btn-warning btn-lg" @click="$router.push('register')">Sign up now</button>
         </div>
 
@@ -42,16 +42,6 @@
 <script>
     export default {
         name: "Home",
-        data() {
-            return {
-                imgLoaded: false,
-            }
-        },
-        methods: {
-            onImgLoad() {
-                this.imgLoaded = true;
-            }
-        }
     }
 </script>
 
