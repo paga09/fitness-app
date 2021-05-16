@@ -18,10 +18,10 @@ return [
 //        'localhost,localhost:3000,localhost:8000,127.0.0.1,127.0.0.1:8000,::1,'.parse_url(env('APP_URL'), PHP_URL_HOST)
 //    )),
 
-    'stateful' => [
-        'localhost:3000',
-        'fitness-app-szakdoga.herokuapp.com'
-    ],
+//    'stateful' => [
+//        'localhost:3000',
+//        'fitness-app-szakdoga.herokuapp.com'
+//    ],
 
 
     /*

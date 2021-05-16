@@ -4,7 +4,7 @@
             <div class="col-10 col-md-8 col-lg-6">
                 <div class="card">
                     <div class="card-header">Register</div>
-                    <div class="card-body">
+                    <div class="card-body" v-on:keyup.enter="registerUser">
                         <div class="form-group">
                             <label for="email">Email</label>
                             <input type="text" class="form-control" name="email" id="email" v-model="formData.email">
