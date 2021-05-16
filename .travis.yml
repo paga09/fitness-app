@@ -9,7 +9,7 @@ os: linux
 before_script:
 - touch test.sqlite
 - composer install
-- cp .env.example .env
+- cp .env.testing .env
 - php artisan key:generate
 
 script:
