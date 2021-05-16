@@ -7,7 +7,7 @@ php:
 os: linux
 
 before_script:
-- touch test.sqlite
+- touch database/test.sqlite
 - composer install
 - cp .env.testing .env
 - php artisan key:generate
