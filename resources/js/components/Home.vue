@@ -5,7 +5,7 @@
         </div>
         <div class="d-flex flex-column flex-sm-row mb-3 mb-md-5">
             <div class="col-sm-6 in-left mb-2">
-                <img :src="'../storage/img/nutrition.jpg'" alt="nutrition" class="img-fluid" @load="onImgLoad">
+                <img :src="'../images/nutrition.jpg'" alt="nutrition" class="img-fluid" @load="onImgLoad">
             </div>
             <div class="col-sm-6 in-right m-auto">
                 <h3>Track your nutrition</h3>
@@ -24,7 +24,7 @@
 
         <div class="d-flex flex-column flex-sm-row-reverse">
             <div class="col-sm-6 in-right mb-2">
-                <img :src="'../storage/img/workout.jpg'" alt="workout" class="img-fluid">
+                <img :src="'../images/workout.jpg'" alt="workout" class="img-fluid">
             </div>
             <div class="col-sm-6 in-left m-auto">
                 <h3>Track your workouts</h3>
