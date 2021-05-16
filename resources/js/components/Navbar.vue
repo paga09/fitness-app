@@ -2,7 +2,6 @@
     <nav class="navbar navbar-expand-md sticky-top navbar-dark bg-dark">
         <div class="container">
             <div class="navbar-brand">Fitness-app</div>
-            <div><img src="../../../storage/app/public/img/nutrition.jpg" alt=""></div>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
