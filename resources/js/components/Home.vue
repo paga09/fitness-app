@@ -23,10 +23,10 @@
         </div>
 
         <div class="d-flex flex-column flex-sm-row-reverse">
-            <div class="col-sm-6 in-right mb-2">
+            <div class="col-sm-6 in-left-sm-right mb-2">
                 <img :src="'../images/workout.jpg'" alt="workout" class="img-fluid">
             </div>
-            <div class="col-sm-6 in-left m-auto">
+            <div class="col-sm-6 in-right-sm-left m-auto">
                 <h3>Track your workouts</h3>
                 <p>
                     Muscle growth is an adaptation to stress. Therefore, if you fail to provide greater stress than
@@ -183,6 +183,47 @@
         animation-delay: 1s;
     }
 
+    .in-left-sm-right {
+        -webkit-animation-name: fadeInLeft;
+        -moz-animation-name: fadeInLeft;
+        -o-animation-name: fadeInLeft;
+        animation-name: fadeInLeft;
+        -webkit-animation-fill-mode: both;
+        -moz-animation-fill-mode: both;
+        -o-animation-fill-mode: both;
+        animation-fill-mode: both;
+        -webkit-animation-duration: 1s;
+        -moz-animation-duration: 1s;
+        -o-animation-duration: 1s;
+        animation-duration: 1s;
+        -webkit-animation-delay: 1s;
+        -moz-animation-delay: 1s;
+        -o-animation-duration: 1s;
+        animation-delay: 1s;
+    }
+
+    @media only screen and (min-width: 576px) {
+        .in-left-sm-right {
+            -webkit-animation-name: fadeInRight;
+            -moz-animation-name: fadeInRight;
+            -o-animation-name: fadeInRight;
+            animation-name: fadeInRight;
+            -webkit-animation-fill-mode: both;
+            -moz-animation-fill-mode: both;
+            -o-animation-fill-mode: both;
+            animation-fill-mode: both;
+            -webkit-animation-duration: 1s;
+            -moz-animation-duration: 1s;
+            -o-animation-duration: 1s;
+            animation-duration: 1s;
+            -webkit-animation-delay: 1s;
+            -moz-animation-delay: 1s;
+            -o-animation-duration: 1s;
+            animation-delay: 1s;
+        }
+    }
+
+
     @-webkit-keyframes fadeInRight {
         from {
             opacity: 0;
@@ -251,6 +292,46 @@
         -moz-animation-delay: 1s;
         -o-animation-duration: 1s;
         animation-delay: 1s;
+    }
+
+    .in-right-sm-left {
+        -webkit-animation-name: fadeInRight;
+        -moz-animation-name: fadeInRight;
+        -o-animation-name: fadeInRight;
+        animation-name: fadeInRight;
+        -webkit-animation-fill-mode: both;
+        -moz-animation-fill-mode: both;
+        -o-animation-fill-mode: both;
+        animation-fill-mode: both;
+        -webkit-animation-duration: 1s;
+        -moz-animation-duration: 1s;
+        -o-animation-duration: 1s;
+        animation-duration: 1s;
+        -webkit-animation-delay: 1s;
+        -moz-animation-delay: 1s;
+        -o-animation-duration: 1s;
+        animation-delay: 1s;
+    }
+
+    @media only screen and (min-width: 576px) {
+        .in-right-sm-left {
+            -webkit-animation-name: fadeInLeft;
+            -moz-animation-name: fadeInLeft;
+            -o-animation-name: fadeInLeft;
+            animation-name: fadeInLeft;
+            -webkit-animation-fill-mode: both;
+            -moz-animation-fill-mode: both;
+            -o-animation-fill-mode: both;
+            animation-fill-mode: both;
+            -webkit-animation-duration: 1s;
+            -moz-animation-duration: 1s;
+            -o-animation-duration: 1s;
+            animation-duration: 1s;
+            -webkit-animation-delay: 1s;
+            -moz-animation-delay: 1s;
+            -o-animation-duration: 1s;
+            animation-delay: 1s;
+        }
     }
 
 
