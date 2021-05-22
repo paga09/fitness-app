@@ -192,7 +192,7 @@
                 return [year, month, day].join('-');
             },
             createWorkout() {
-                axios.post('/api/user/create_workout', {
+                axios.post('/api/workout/create_workout', {
                     date: this.date
                 })
                 .then(() => {
@@ -203,7 +203,7 @@
                 this.getWorkoutDates();
             },
             deleteWorkout(workoutId) {
-                axios.delete('/api/user/delete_workout', {
+                axios.delete('/api/workout/delete_workout', {
                     data: {
                         workoutId: workoutId
                     }
@@ -216,7 +216,7 @@
                 this.getWorkoutDates();
             },
             addExercise(workoutId) {
-                axios.post('/api/user/create_exercise', {
+                axios.post('/api/exercise/create_exercise', {
                     workoutId: workoutId
                 })
                     .then(() => {
@@ -226,7 +226,7 @@
                     });
             },
             deleteExercise(workoutId, exerciseId) {
-                axios.delete('/api/user/delete_exercise', {
+                axios.delete('/api/exercise/delete_exercise', {
                     data: {
                         workoutId: workoutId,
                         exerciseId: exerciseId
@@ -259,7 +259,7 @@
 
 
                 if(validated) {
-                    axios.put('/api/user/edit_exercise', {
+                    axios.put('/api/exercise/edit_exercise', {
                         workoutId,
                         exerciseId,
                         exerciseName,
@@ -280,7 +280,7 @@
                 this.showEdit = 0;
             },
             getWorkoutDates() {
-                axios.get('/api/user/workout_dates').then((response) => {
+                axios.get('/api/workout/workout_dates').then((response) => {
                     const attrs = this.attributes.slice();
                     attrs[0].dates = [];
                     response.data.forEach(element => attrs[0].dates.push(element.date));
@@ -289,7 +289,7 @@
             },
             getWorkoutData() {
                 this.$isLoading(true);
-                axios.get('/api/user/workouts', {
+                axios.get('/api/workout/workouts', {
                     params: {
                         date: this.date
                     }

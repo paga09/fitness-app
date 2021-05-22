@@ -406,7 +406,7 @@
                 return [year, month, day].join('-');
             },
             createMeal() {
-                axios.post('/api/user/create_meal', {
+                axios.post('/api/meal/create_meal', {
                     date: this.date
                 })
                     .then(() => {
@@ -417,7 +417,7 @@
                 this.getMealDates();
             },
             deleteMeal(mealId) {
-                axios.delete('/api/user/delete_meal', {
+                axios.delete('/api/meal/delete_meal', {
                     data: {
                         mealId
                     }
@@ -430,7 +430,7 @@
                 this.getMealDates();
             },
             addFood(mealId) {
-                axios.post('/api/user/create_food', {
+                axios.post('/api/food/create_food', {
                     mealId
                 })
                     .then(() => {
@@ -440,7 +440,7 @@
                     });
             },
             deleteFood(mealId, foodId) {
-                axios.delete('/api/user/delete_food', {
+                axios.delete('/api/food/delete_food', {
                     data: {
                         mealId,
                         foodId
@@ -475,7 +475,7 @@
                 }
 
                 if (validated) {
-                    axios.put('/api/user/edit_food', {
+                    axios.put('/api/food/edit_food', {
                         mealId,
                         foodId,
                         foodName,
@@ -498,7 +498,7 @@
                 this.showEdit = 0;
             },
             getMealDates() {
-                axios.get('/api/user/meal_dates').then((response) => {
+                axios.get('/api/meal/meal_dates').then((response) => {
                     const attrs = this.attributes.slice();
                     attrs[0].dates = [];
                     response.data.forEach(element => attrs[0].dates.push(element.date));
@@ -507,7 +507,7 @@
             },
             getMealData() {
                 this.$isLoading(true);
-                axios.get('/api/user/meals', {
+                axios.get('/api/meal/meals', {
                     params: {
                         date: this.date
                     }
@@ -617,7 +617,7 @@
 
                 if(/^[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(mealId)){
                     this.$isLoading(true);
-                    axios.post('/api/user/import_meal', {
+                    axios.post('/api/meal/import_meal', {
                         date: this.date,
                         mealId
                     }).then((response) => {

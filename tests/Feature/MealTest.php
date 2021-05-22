@@ -19,7 +19,7 @@ class MealTest extends TestCase
     {
         $date = date("Y-m-d");
 
-        $this->json('GET', '/api/user/meals', ["date" => $date])
+        $this->json('GET', '/api/meal/meals', ["date" => $date])
             ->assertStatus(401);
 
         Sanctum::actingAs(
@@ -41,7 +41,7 @@ class MealTest extends TestCase
                 ]],
         ]];
 
-        $this->json('GET', '/api/user/meals', ["date" => $date])
+        $this->json('GET', '/api/meal/meals', ["date" => $date])
             ->assertStatus(200)
             ->assertJson($expectedResponse);
     }
@@ -50,7 +50,7 @@ class MealTest extends TestCase
     {
         $date = date("Y-m-d");
 
-        $this->json('POST', '/api/user/create_meal', ["date" => $date])
+        $this->json('POST', '/api/meal/create_meal', ["date" => $date])
             ->assertStatus(401);
 
         Sanctum::actingAs(
@@ -62,7 +62,7 @@ class MealTest extends TestCase
             'date' => $date
         ];
 
-        $this->json('POST', '/api/user/create_meal', ["date" => $date])
+        $this->json('POST', '/api/meal/create_meal', ["date" => $date])
             ->assertStatus(201)
             ->assertJson($expectedResponse);
     }
@@ -70,14 +70,14 @@ class MealTest extends TestCase
     public function testDeleteMeal()
     {
         $mealId = MealPlan::where('user_id', 1)->first()->uuid;
-        $this->json('DELETE', '/api/user/delete_meal', ["mealId" => $mealId])
+        $this->json('DELETE', '/api/meal/delete_meal', ["mealId" => $mealId])
             ->assertStatus(401);
 
         Sanctum::actingAs(
             User::where("id", 2)->get()->first()
         );
 
-        $this->json('DELETE', '/api/user/delete_meal', ["mealId" => $mealId])
+        $this->json('DELETE', '/api/meal/delete_meal', ["mealId" => $mealId])
             ->assertStatus(404)
             ->assertJson(['message' => 'Nothing to delete.']);
 
@@ -85,7 +85,7 @@ class MealTest extends TestCase
             User::where("id", 1)->get()->first()
         );
 
-        $this->json('DELETE', '/api/user/delete_meal', ["mealId" => $mealId])
+        $this->json('DELETE', '/api/meal/delete_meal', ["mealId" => $mealId])
             ->assertStatus(200);
     }
 
@@ -93,21 +93,21 @@ class MealTest extends TestCase
     {
         $mealId = MealPlan::where('user_id', 1)->first()->uuid;
 
-        $this->json('POST', '/api/user/create_food', ["mealId" => $mealId])
+        $this->json('POST', '/api/food/create_food', ["mealId" => $mealId])
             ->assertStatus(401);
 
         Sanctum::actingAs(
             User::where("id", "2")->get()->first()
         );
 
-        $this->json('POST', '/api/user/create_food', ["mealId" => $mealId])
+        $this->json('POST', '/api/food/create_food', ["mealId" => $mealId])
             ->assertStatus(409);
 
         Sanctum::actingAs(
             User::where("id", "1")->get()->first()
         );
 
-        $this->json('POST', '/api/user/create_food', ["mealId" => $mealId])
+        $this->json('POST', '/api/food/create_food', ["mealId" => $mealId])
             ->assertStatus(201)
             ->assertJson([
                 'name' => 'new food',
@@ -124,14 +124,14 @@ class MealTest extends TestCase
     {
         $mealId = MealPlan::where('user_id', 1)->first()->uuid;
         $foodId = 1;
-        $this->json('DELETE', '/api/user/delete_food', ["mealId" => $mealId, "foodId" => $foodId])
+        $this->json('DELETE', '/api/food/delete_food', ["mealId" => $mealId, "foodId" => $foodId])
             ->assertStatus(401);
 
         Sanctum::actingAs(
             User::where("id", 2)->get()->first()
         );
 
-        $this->json('DELETE', '/api/user/delete_food', ["mealId" => $mealId, "foodId" => $foodId])
+        $this->json('DELETE', '/api/food/delete_food', ["mealId" => $mealId, "foodId" => $foodId])
             ->assertStatus(404)
             ->assertJson(['message' => 'Nothing to delete.']);
 
@@ -139,7 +139,7 @@ class MealTest extends TestCase
             User::where("id", 1)->get()->first()
         );
 
-        $this->json('DELETE', '/api/user/delete_food', ["mealId" => $mealId, "foodId" => $foodId])
+        $this->json('DELETE', '/api/food/delete_food', ["mealId" => $mealId, "foodId" => $foodId])
             ->assertStatus(200);
     }
 
@@ -159,14 +159,14 @@ class MealTest extends TestCase
             'foodKcal' => 1700,
         ];
 
-        $this->json('PUT', '/api/user/edit_food', $data)
+        $this->json('PUT', '/api/food/edit_food', $data)
             ->assertStatus(401);
 
         Sanctum::actingAs(
             User::where("id", 2)->get()->first()
         );
 
-        $this->json('PUT', '/api/user/edit_food', $data)
+        $this->json('PUT', '/api/food/edit_food', $data)
             ->assertStatus(409)
             ->assertJson(['message' => 'Invalid data.']);
 
@@ -174,20 +174,20 @@ class MealTest extends TestCase
             User::where("id", 1)->get()->first()
         );
 
-        $this->json('PUT', '/api/user/edit_food', $data)
+        $this->json('PUT', '/api/food/edit_food', $data)
             ->assertStatus(200);
     }
 
     public function testGetMealDates()
     {
-        $this->json('GET', '/api/user/meal_dates')
+        $this->json('GET', '/api/meal/meal_dates')
             ->assertStatus(401);
 
         Sanctum::actingAs(
             User::where("id", 1)->get()->first()
         );
 
-        $this->json('GET', '/api/user/meal_dates')
+        $this->json('GET', '/api/meal/meal_dates')
             ->assertStatus(200);
     }
 
@@ -197,21 +197,21 @@ class MealTest extends TestCase
         $date = date("Y-m-d");
 
 
-        $this->json('POST', '/api/user/import_meal', ['mealId' => $mealId, 'date' => $date])
+        $this->json('POST', '/api/meal/import_meal', ['mealId' => $mealId, 'date' => $date])
             ->assertStatus(401);
 
         Sanctum::actingAs(
             User::where("id", 2)->get()->first()
         );
 
-        $this->json('POST', '/api/user/import_meal', ['mealId' => $mealId, 'date' => $date])
+        $this->json('POST', '/api/meal/import_meal', ['mealId' => $mealId, 'date' => $date])
             ->assertStatus(409);
 
         Sanctum::actingAs(
             User::where("id", 1)->get()->first()
         );
 
-        $this->json('POST', '/api/user/import_meal', ['mealId' => $mealId, 'date' => $date])
+        $this->json('POST', '/api/meal/import_meal', ['mealId' => $mealId, 'date' => $date])
             ->assertStatus(201);
 
     }

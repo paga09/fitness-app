@@ -17,7 +17,7 @@ class WorkoutTest extends TestCase
     {
         $date = date("Y-m-d");
 
-        $this->json('GET', '/api/user/workouts', ["date" => $date])
+        $this->json('GET', '/api/workout/workouts', ["date" => $date])
             ->assertStatus(401);
 
         Sanctum::actingAs(
@@ -37,7 +37,7 @@ class WorkoutTest extends TestCase
                 ]],
         ]];
 
-        $this->json('GET', '/api/user/workouts', ["date" => $date])
+        $this->json('GET', '/api/workout/workouts', ["date" => $date])
             ->assertStatus(200)
             ->assertJson($expectedResponse);
     }
@@ -46,7 +46,7 @@ class WorkoutTest extends TestCase
     {
         $date = date("Y-m-d");
 
-        $this->json('POST', '/api/user/create_workout', ["date" => $date])
+        $this->json('POST', '/api/workout/create_workout', ["date" => $date])
             ->assertStatus(401);
 
         Sanctum::actingAs(
@@ -58,7 +58,7 @@ class WorkoutTest extends TestCase
             'date' => $date
         ];
 
-        $this->json('POST', '/api/user/create_workout', ["date" => $date])
+        $this->json('POST', '/api/workout/create_workout', ["date" => $date])
             ->assertStatus(201)
             ->assertJson($expectedResponse);
     }
@@ -66,14 +66,14 @@ class WorkoutTest extends TestCase
     public function testDeleteWorkout()
     {
         $workoutId = 1;
-        $this->json('DELETE', '/api/user/delete_workout', ["workoutId" => $workoutId])
+        $this->json('DELETE', '/api/workout/delete_workout', ["workoutId" => $workoutId])
             ->assertStatus(401);
 
         Sanctum::actingAs(
             User::where("id", 2)->get()->first()
         );
 
-        $this->json('DELETE', '/api/user/delete_workout', ["workoutId" => $workoutId])
+        $this->json('DELETE', '/api/workout/delete_workout', ["workoutId" => $workoutId])
             ->assertStatus(404)
             ->assertJson(['message' => 'Nothing to delete.']);
 
@@ -81,7 +81,7 @@ class WorkoutTest extends TestCase
             User::where("id", 1)->get()->first()
         );
 
-        $this->json('DELETE', '/api/user/delete_workout', ["workoutId" => $workoutId])
+        $this->json('DELETE', '/api/workout/delete_workout', ["workoutId" => $workoutId])
             ->assertStatus(200);
     }
 
@@ -89,21 +89,21 @@ class WorkoutTest extends TestCase
     {
         $workoutId = 1;
 
-        $this->json('POST', '/api/user/create_exercise', ["workoutId" => $workoutId])
+        $this->json('POST', '/api/exercise/create_exercise', ["workoutId" => $workoutId])
             ->assertStatus(401);
 
         Sanctum::actingAs(
             User::where("id", "2")->get()->first()
         );
 
-        $this->json('POST', '/api/user/create_exercise', ["workoutId" => $workoutId])
+        $this->json('POST', '/api/exercise/create_exercise', ["workoutId" => $workoutId])
             ->assertStatus(409);
 
         Sanctum::actingAs(
             User::where("id", "1")->get()->first()
         );
 
-        $this->json('POST', '/api/user/create_exercise', ["workoutId" => $workoutId])
+        $this->json('POST', '/api/exercise/create_exercise', ["workoutId" => $workoutId])
             ->assertStatus(201)
             ->assertJson([
                 'name' => 'new exercise',
@@ -117,14 +117,14 @@ class WorkoutTest extends TestCase
     {
         $workoutId = 1;
         $exerciseId = 1;
-        $this->json('DELETE', '/api/user/delete_exercise', ["workoutId" => $workoutId, "exerciseId" => $exerciseId])
+        $this->json('DELETE', '/api/exercise/delete_exercise', ["workoutId" => $workoutId, "exerciseId" => $exerciseId])
             ->assertStatus(401);
 
         Sanctum::actingAs(
             User::where("id", 2)->get()->first()
         );
 
-        $this->json('DELETE', '/api/user/delete_exercise', ["workoutId" => $workoutId, "exerciseId" => $exerciseId])
+        $this->json('DELETE', '/api/exercise/delete_exercise', ["workoutId" => $workoutId, "exerciseId" => $exerciseId])
             ->assertStatus(404)
             ->assertJson(['message' => 'Nothing to delete.']);
 
@@ -132,7 +132,7 @@ class WorkoutTest extends TestCase
             User::where("id", 1)->get()->first()
         );
 
-        $this->json('DELETE', '/api/user/delete_exercise', ["workoutId" => $workoutId, "exerciseId" => $exerciseId])
+        $this->json('DELETE', '/api/exercise/delete_exercise', ["workoutId" => $workoutId, "exerciseId" => $exerciseId])
             ->assertStatus(200);
     }
 
@@ -149,14 +149,14 @@ class WorkoutTest extends TestCase
             'exerciseWeight' => 10,
         ];
 
-        $this->json('PUT', '/api/user/edit_exercise', $data)
+        $this->json('PUT', '/api/exercise/edit_exercise', $data)
             ->assertStatus(401);
 
         Sanctum::actingAs(
             User::where("id", 2)->get()->first()
         );
 
-        $this->json('PUT', '/api/user/edit_exercise', $data)
+        $this->json('PUT', '/api/exercise/edit_exercise', $data)
             ->assertStatus(409)
             ->assertJson(['message' => 'Invalid data.']);
 
@@ -164,20 +164,20 @@ class WorkoutTest extends TestCase
             User::where("id", 1)->get()->first()
         );
 
-        $this->json('PUT', '/api/user/edit_exercise', $data)
+        $this->json('PUT', '/api/exercise/edit_exercise', $data)
             ->assertStatus(200);
     }
 
     public function testGetWorkoutDates()
     {
-        $this->json('GET', '/api/user/workout_dates')
+        $this->json('GET', '/api/workout/workout_dates')
             ->assertStatus(401);
 
         Sanctum::actingAs(
             User::where("id", 1)->get()->first()
         );
 
-        $this->json('GET', '/api/user/workout_dates')
+        $this->json('GET', '/api/workout/workout_dates')
             ->assertStatus(200);
     }
     }
