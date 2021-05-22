@@ -66,6 +66,8 @@
                 axios.get('/api/user/get_user_settings').then((response) => {
                     this.$isLoading(false);
                     this.checkedSettings = response.data;
+                }).catch(function (error) {
+                    this.$isLoading(false);
                 });
             },
             editUserSettings() {
@@ -75,6 +77,9 @@
                 }).then(() => {
                         this.$isLoading(false)
                     })
+                    .catch(function (error) {
+                        this.$isLoading(false)
+                    });
             }
         },
         created() {

@@ -514,6 +514,8 @@
                 }).then((response) => {
                     this.$isLoading(false);
                     this.meals = response.data
+                }, (error) => {
+                    this.$isLoading(false);
                 });
             },
             calculateDailyAmount() {
@@ -525,11 +527,11 @@
                     kcal: 0,
                 };
                 this.meals.forEach(element => element.foods.forEach(e => {
-                        this.dailyAmount.protein += parseInt(e.protein);
-                        this.dailyAmount.carbs += parseInt(e.carbohydrates);
-                        this.dailyAmount.fats += parseInt(e.fats);
-                        this.dailyAmount.fiber += parseInt(e.fiber);
-                        this.dailyAmount.kcal += parseInt(e.kcal)
+                        this.dailyAmount.protein += parseFloat(e.protein);
+                        this.dailyAmount.carbs += parseFloat(e.carbohydrates);
+                        this.dailyAmount.fats += parseFloat(e.fats);
+                        this.dailyAmount.fiber += parseFloat(e.fiber);
+                        this.dailyAmount.kcal += parseFloat(e.kcal);
                     }
                 ));
                 this.updateRecommendations();
@@ -640,6 +642,8 @@
                 axios.get('/api/user/get_user_settings').then((response) => {
                     this.$isLoading(false);
                     this.checkedSettings = response.data;
+                }).catch(function (error) {
+                    this.$isLoading(false);
                 });
             },
         },

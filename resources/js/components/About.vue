@@ -29,7 +29,7 @@
                 </div>
             </div>
             <div class="col-12 col-lg-6">
-                <div id="accordion" class="mb-5">
+                <div id="accordion">
                     <div class="card bg-dark text-white">
                         <div class="card-header" id="headingMealPlan">
                             <h5 class="mb-0">

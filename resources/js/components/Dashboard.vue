@@ -44,6 +44,8 @@
                     this.$isLoading(false);
                     this.$store.commit('setAuthorization', false);
                     this.$router.push({ name: 'Login' })
+                }, (error) => {
+                    this.$isLoading(false);
                 })
             }
         },
@@ -53,6 +55,8 @@
                 this.$isLoading(false);
                 this.email = response.data.email;
                 this.registrationDate = response.data.created_at.substring(0, 10);
+            }, (error) => {
+                this.$isLoading(false);
             })
         }
     }

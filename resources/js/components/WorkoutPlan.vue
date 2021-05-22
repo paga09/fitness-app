@@ -296,6 +296,8 @@
                 }).then((response) => {
                     this.$isLoading(false);
                     this.workouts = response.data
+                }, (error) => {
+                    this.$isLoading(false);
                 });
             },
             calculateOneRM(rep, weight) {
