@@ -25,9 +25,15 @@
 <body>
 <div id="app">
     <noscript>
-        This page needs JavaScript activated to work.
+        <h1>
+            This page needs JavaScript activated to work.
+        </h1>
     </noscript>
-    @yield('content')
+    <navbar-component></navbar-component>
+    <div class="container pt-5 pb-4">
+        <router-view></router-view>
+    </div>
+    <footer-component></footer-component>
 </div>
 </body>
 </html>
