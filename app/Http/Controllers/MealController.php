@@ -31,7 +31,7 @@ class MealController extends Controller
         $date = $request->date;
         $userId = $request->user()->id;
 
-        $mealPlan = Mealplan::create([
+        $mealPlan = MealPlan::create([
             'user_id' => $userId,
             'date' => $date
         ]);
