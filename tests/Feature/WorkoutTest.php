@@ -110,7 +110,7 @@ class WorkoutTest extends TestCase
                 'set' => 0,
                 'repetitions' => 0,
                 'weight' => 0,
-                ]);
+            ]);
     }
 
     public function testDeleteExercise()
@@ -180,4 +180,4 @@ class WorkoutTest extends TestCase
         $this->json('GET', '/api/workout/workout_dates')
             ->assertStatus(200);
     }
-    }
+}
