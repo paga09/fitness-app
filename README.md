@@ -30,7 +30,6 @@
 <h2>Testing:</h2>
 <ul>
     <li>touch database/test.sqlite</li>
-    <li>php</li>
-    <li>php artisan –env=testing migrate:fresh --seed</li>
+    <li>php artisan --env=testing migrate:fresh --seed</li>
     <li>php artisan test</li>
 </ul>
