@@ -11,8 +11,8 @@
 <ul>
     <li>git clone</li>
     <li>copy .env.example .env</li>
-    <li>php artisan key:generate</li>
     <li>composer install</li>
+    <li>php artisan key:generate</li>
     <li>npm install</li>
     <li>touch database/database.sqlite</li>
     <li>php artisan migrate</li>
